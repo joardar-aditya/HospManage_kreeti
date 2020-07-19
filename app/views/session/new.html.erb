@@ -1,0 +1,47 @@
+<div class="container border px-2">
+    <%= form_tag '/session' do %>
+    <div>
+       <%= label_tag :email %>
+       <%= text_field_tag :email, params[:email] %> 
+
+    </div>
+    <div> 
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+
+    </div>
+
+    <%= submit_tag "Log in" %>
+    <%= submit_tag "Forgot password",  :name => "forget_password" %>
+
+
+    <% end %>     
+
+
+</div>
+
+<div class= "container border my-4">
+     <h1 class="text-center"> Welcome to HospManager </h1>
+     <h2 class="my-2 text-center"> About us </h2>
+     <p class="my-2"> Central Hospital Management Website for your Hospital with secure and dedicated
+     Admin Panel - so that you can control every aspect of your data! Seperate login for staff Members, Doctors
+      </p>
+      <ul>
+        <li><b>For Admins</b> -: Visit the admin panel by using "/admin" and using the default email and password and then change the password and email for further secure login!
+             <ul>
+             <li> Maintain records for patients </li>
+             <li> Maintain records for doctors and staff</li>
+             <li>Add Bed type and costs</li>
+             <li> Add Payment types allowed </li>
+             </ul>
+        </li>
+        
+
+
+
+
+
+
+
+
+</div>

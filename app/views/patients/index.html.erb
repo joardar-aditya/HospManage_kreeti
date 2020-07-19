@@ -1,0 +1,22 @@
+<div class="py-3 container bg-dark text-light">
+   <h1> Your Patients </h1>
+</div>
+
+
+<div class="container">
+
+    <% @patients.each do |p| %>
+        
+       <a href=<%= patient_path(p.id) %>> <div class="container border my-2 mx-2"> 
+            
+            <h2><%= p.name %></h2>
+            <div><%= p.ds %></div>
+
+        </div> </a>
+      
+
+    <% end %>
+
+
+
+</div>

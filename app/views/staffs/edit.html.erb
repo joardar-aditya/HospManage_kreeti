@@ -1,0 +1,15 @@
+<div class="container">
+    <h1 class= "my-2">Edit Your Password </h1>
+    <%= form_for @staff, :method => :PUT do |form| %>
+       <div><%= form.password_field :password %></div>
+       <div><%= form.password_field :password_confirmation %></div>
+       <div><%= form.hidden_field :reset ,:value => true %></div>
+       <%= form.submit disable_with: "Submitting...." %>
+
+
+
+    <% end %>
+
+
+
+</div> 
