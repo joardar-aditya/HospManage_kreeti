@@ -45,6 +45,10 @@ end
 
 class Patient < ApplicationRecord
      include ActiveModel::Validations 
+     validates :name, presence: true
+     validates :age, presence: true 
+     validates :ds, presence: true
+     validates :consult, presence: true
      validates_with BedValidator
      validates_with PaymentValidator
      validates_with DoctorValidator

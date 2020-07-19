@@ -26,7 +26,7 @@ ActiveAdmin.register Staff do
     f.input :name 
     f.input :password 
     f.input :password_confirmation
-    f.input :role 
+    f.input :role, :as => :select, :collection => ["Doctor", "Support"]
     f.input :design
     f.input :access
     end 

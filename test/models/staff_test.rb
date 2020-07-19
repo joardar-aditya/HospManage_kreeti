@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class StaffTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "not staff null" do
+    staff = Staff.new
+    assert_not staff.save, "Saved null!"
+ end
 end

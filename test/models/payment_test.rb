@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class PaymentTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "not null" do
+     pay = Payment.new
+     assert_not pay.save, "Saved null!"
+  end
 end

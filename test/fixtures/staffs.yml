@@ -8,10 +8,4 @@ one:
   reset: false
   design: MyString
 
-two:
-  email: MyString
-  password_digest: <%= BCrypt::Password.create('secret') %>
-  name: MyString
-  role: MyString
-  reset: false
-  design: MyString
+

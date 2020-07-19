@@ -8,12 +8,3 @@ one:
   bedtype: MyString
   paymentmethod: MyString
   consult: MyString
-
-two:
-  name: MyString
-  age: 1
-  ds: MyString
-  admitted: false
-  bedtype: MyString
-  paymentmethod: MyString
-  consult: MyString

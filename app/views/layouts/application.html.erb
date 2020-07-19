@@ -18,7 +18,9 @@
      <header class="container">
         <nav class="navbar navbar-expand navbar-light justify-content-end">
          <ul class="navbar-nav">
+           
             <% if current_user != nil %>
+                 <li class="mx-2"><%= link_to "Dashboard", "/patients", method: "get" %></li>
                  <li><%= link_to "Logout", logout_path, method: "delete" %></li>
             <% end %>     
 
