@@ -15,6 +15,11 @@ Things you may want to cover:
 * Database-: Local Sqlite
 
 * How to run the test suite-:
- //coming soon
+ rails test
+
+ Admin initial Password -: 
+
+ username -;admin@example.com
+ password -: password
 
 * Made by @joardar-aditya
