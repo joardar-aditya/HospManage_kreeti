@@ -6,6 +6,9 @@ class PatientsController < ApplicationController
     
     def index 
         @patients = Patient.all.where(consult: current_user.name)
+        if current_user.role.to_s == "Support"
+            @patients = Patient.all 
+        end
     end 
 
     def show 
