@@ -1,11 +1,13 @@
 ActiveAdmin.register Patient do
 
+ 
+
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :age, :ds, :admitted, :bedtype, :paymentmethod, :consult
+  permit_params :name, :age, :disease, :admitted, :beds_id, :payments_id, :staffs_id
   #
   # or
   #
@@ -16,14 +18,15 @@ ActiveAdmin.register Patient do
   #end
   
   form do |f| 
+    f.semantic_errors *f.object.errors.keys
     f.inputs "Patent Details" do 
       f.input :name 
       f.input :age
-      f.input :ds 
+      f.input :disease 
       f.input :admitted
-      f.input :bedtype, :as => :select, :collection => Bed.all.collect {|bed|  [bed.name+ ", price_per_day-Rs."+ bed.pricepd.to_s,bed.name]}
-      f.input :paymentmethod, :as => :select, :collection => Payment.all.collect {|pay| [pay.ptype]}
-      f.input :consult, :as => :select, :collection => Staff.where(role: "Doctor").collect {|doc| [doc.name + "-" +doc.design, doc.name]}
+      f.input :beds_id, :as => :select, :collection => Bed.all.collect {|bed|  [bed.name+ ", price_per_day-Rs."+ bed.price_per_day.to_s, bed.id]}
+      f.input :payments_id,  :as => :select, :collection => Payment.all.collect {|pay| [pay.paymenttype,  pay.id]}
+      f.input :staffs_id,  :as => :select, :collection => Staff.where(doctor: true).collect {|doc| [doc.name + "-" +doc.designation, doc.id]}
     end
     f.actions
   end  

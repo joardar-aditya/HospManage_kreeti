@@ -1,0 +1,9 @@
+<div class="text-center my-2 container">
+<h2 class="py-2">Notify admin for a new Password!</h2>
+<%= form_with(url: "/forget_password", method: "post") do %>
+  <%= label_tag(:q, "Your E-mail:") %>
+  <%= text_field_tag(:email) %>
+  <%= submit_tag("Submit") %>
+<% end %>
+
+</div>

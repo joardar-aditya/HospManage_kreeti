@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_18_185632) do
+ActiveRecord::Schema.define(version: 2020_08_03_145436) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2020_07_18_185632) do
 
   create_table "beds", force: :cascade do |t|
     t.string "name"
-    t.integer "pricepd"
+    t.integer "price_per_day"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -48,17 +48,20 @@ ActiveRecord::Schema.define(version: 2020_07_18_185632) do
   create_table "patients", force: :cascade do |t|
     t.string "name"
     t.integer "age"
-    t.string "ds"
+    t.string "disease"
     t.boolean "admitted"
-    t.string "bedtype"
-    t.string "paymentmethod"
-    t.string "consult"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "beds_id"
+    t.integer "payments_id"
+    t.integer "staffs_id"
+    t.index ["beds_id"], name: "index_patients_on_beds_id"
+    t.index ["payments_id"], name: "index_patients_on_payments_id"
+    t.index ["staffs_id"], name: "index_patients_on_staffs_id"
   end
 
   create_table "payments", force: :cascade do |t|
-    t.string "ptype"
+    t.string "paymenttype"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -67,13 +70,13 @@ ActiveRecord::Schema.define(version: 2020_07_18_185632) do
     t.string "email"
     t.string "password_digest"
     t.string "name"
-    t.string "role"
     t.boolean "reset"
-    t.string "design"
+    t.string "designation"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "access"
-    t.boolean "forgotp"
+    t.boolean "f_pass"
+    t.boolean "doctor"
     t.index ["email"], name: "index_staffs_on_email", unique: true
   end
 

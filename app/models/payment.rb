@@ -1,3 +1,4 @@
 class Payment < ApplicationRecord
-    validates :ptype, presence: true
+    validates :paymenttype, presence: true
+    has_many :patient, dependent: :destroy
 end

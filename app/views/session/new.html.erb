@@ -1,3 +1,4 @@
+<% if current_user == nil && current_admin_user == nil %>
 <div class="container border px-2">
     <%= form_tag '/session' do %>
     <div>
@@ -12,13 +13,14 @@
     </div>
 
     <%= submit_tag "Log in" %>
-    <%= submit_tag "Forgot password",  :name => "forget_password" %>
+    <a href="/forget_password"><%= button_tag 'Forget password' %></a>
 
 
     <% end %>     
 
 
 </div>
+<% end %>
 
 <div class= "container border my-4">
      <h1 class="text-center"> Welcome to HospManager </h1>

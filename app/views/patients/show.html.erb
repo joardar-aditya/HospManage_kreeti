@@ -2,11 +2,14 @@
     <h1 class="my-2">Name</h1>
     <div><%= @patient.name %></div>
     <h3 class="my-2">Diagnosed for</h3>
-    <div><%= @patient.ds %></div> 
+    <div><%= @patient.disease %></div> 
     <h3 class="my-2">Registered at:</h3>
     <div><%= @patient.created_at.to_formatted_s(:long)%></div>
 
+    <div class="my-2">
+      <a href="<%= edit_patient_path %>"> <button class="btn btn-primary">Edit Patient </button> </a>
 
+    </div>
 
 
 </div>

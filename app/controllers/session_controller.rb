@@ -5,20 +5,8 @@ class SessionController < ApplicationController
 
     def create 
          user = Staff.find_by_email(params[:email])
-         if params[:forget_password]
-            if user 
-               user.update(forgotp: true)
-               if user.save 
-                  flash.now[:success] = "Your Request has been sent to the Admin!, You would soon get a new password!"
-                  render "new"
-               end 
-            else
-               flash.now[:danger] = "User for the given email id not found"
-               render "new"
-            end 
-         else
-           if user && user.authenticate(params[:password]) 
-             user.update(forgotp: false)
+        if user && user.authenticate(params[:password]) 
+           user.update(f_pass: false)
              user.save
              if user.access 
                session[:id] = user.id 
@@ -32,11 +20,10 @@ class SessionController < ApplicationController
                render "new"
              end  
          
-           else
+        else
              flash.now[:danger] = "Invalid Credentials, Log In Failed"  
              render "new"  
-           end
-         end      
+        end    
     end 
 
    

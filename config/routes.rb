@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'session#new'
   resources :patients
   resources :staffs
+  resources :forget_password
   get '/login', to: 'session#new'
   get '/session', to: 'session#new'
   delete '/logout', to: 'session#destroy'

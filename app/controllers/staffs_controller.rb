@@ -1,6 +1,7 @@
 class StaffsController < ApplicationController
+   include ApplicationHelper
 
-    before_action :authorize 
+    before_action :authorize
     def edit 
        @staff = Staff.find(session[:id])
     end 

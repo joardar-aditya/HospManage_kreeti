@@ -1,8 +1,11 @@
 class Staff < ApplicationRecord
   has_secure_password
+  validates :email, format: { with: /\A^(.+)@(.+)$+\z/,
+    message: "E-mail invalid" }
+  validates :email, length: { in: 5..1000 }  
   validates :email, uniqueness: true
   validates :name, presence: true
-  validates :role, presence: true 
   validates :email, presence: true 
-  validates :password_digest, presence: true 
+  validates :password, length: { minimum: 6 }
+  has_many :patient, dependent: :destroy
 end
