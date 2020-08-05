@@ -10,7 +10,7 @@ class PatientsController < ApplicationController
           if !current_user.doctor
             @patients = Patient.all
           else 
-            @patients = Patient.all.where(staffs_id: current_user.id)
+            @patients = Patient.all.where(staff_id: current_user.id)
           end 
         end
     end 

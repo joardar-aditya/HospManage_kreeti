@@ -21,6 +21,7 @@ module ApplicationHelper
             redirect_to  "/", danger: "Not allowed! Log in first"
         end 
     end 
+
     
     
     
