@@ -4,7 +4,7 @@ class SessionController < ApplicationController
     end 
 
     def create 
-         user = Staff.find_by_email(params[:email])
+        user = Staff.find_by_email(params[:email])
         if user && user.authenticate(params[:password]) 
            user.update(f_pass: false)
              user.save

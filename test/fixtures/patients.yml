@@ -3,8 +3,9 @@
 one:
   name: MyString
   age: 1
-  ds: MyString
+  disease: MyString
   admitted: false
-  bedtype: MyString
-  paymentmethod: MyString
-  consult: MyString
+  bed_id: 1
+  payment_id: 1
+  staff_id: 1
+  

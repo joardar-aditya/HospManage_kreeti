@@ -2,11 +2,11 @@ class ForgetPasswordController < ApplicationController
     def index 
     end 
 
-    def create
+    def forgetp
         @user = Staff.find_by_email(params[:email])
         if @user 
             @user.f_pass = true 
-            if  @user.save 
+            if  @user.save! 
               redirect_to "/", success: "Admin notified! Your new password would be set soon!"
             else 
                redirect_to "/forget_password", danger: "Error!"

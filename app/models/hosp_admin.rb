@@ -6,5 +6,5 @@ class HospAdmin < ApplicationRecord
     validates :email, uniqueness: true
     validates :name, presence: true
     validates :email, presence: true 
-    validates :password, length: { minimum: 6 }
+    validates :password, length: { minimum: 6 }, :on => :save
 end

@@ -26,7 +26,7 @@
                  <li class="mr-2"><%= link_to "Logout", logout_path, method: "delete" %></li>
                  <% end %>
                  <% if current_admin_user != nil %>
-                 <li><%= link_to "Logout as Admin", '/admin_logout' , method: "delete" %></li>
+                 <li><%= link_to "Logout as Admin", admin_session_logout_path , method: "get" %></li>
                  <% end %>
             <% end %>
 

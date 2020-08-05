@@ -2,5 +2,5 @@
 
 one:
   name: MyString
-  pricepd: 1
+  price_per_day: 1
 

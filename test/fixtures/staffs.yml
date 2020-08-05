@@ -4,8 +4,9 @@ one:
   email: MyString
   password_digest: <%= BCrypt::Password.create('secret') %>
   name: MyString
-  role: MyString
+  designation: MyString
+  doctor: false 
+  f_pass: false 
   reset: false
-  design: MyString
 
 

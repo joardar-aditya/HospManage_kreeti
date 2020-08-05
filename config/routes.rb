@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :admin_session
   get '/login', to: 'session#new'
   get '/admin_logout', to: 'admin_session#destroy', as: 'admin_session_logout'
-  get '/session', to: 'session#new'
+  put '/forgetp_request', to: 'forget_password#forgetp', as: 'forget_password_request'
   delete '/logout', to: 'session#destroy'
   post '/session', to: 'session#create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
