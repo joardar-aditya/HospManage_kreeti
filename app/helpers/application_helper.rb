@@ -20,5 +20,12 @@ module ApplicationHelper
         else 
             redirect_to  "/", danger: "Not allowed! Log in first"
         end 
-    end
+    end 
+    
+    
+    
+
+
+
+
 end

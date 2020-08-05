@@ -5,12 +5,12 @@ ActiveAdmin.register Bed do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :price_per_day
+  # permit_params :name, :price_per_day
   #
   # or
   #
   # permit_params do
-  #   permitted = [:name, :pricepd]
+  #   permitted = [:name, :price_per_day]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
