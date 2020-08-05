@@ -9,6 +9,8 @@ Things you may want to cover:
 
 * Initializing the app -:
    1) bundle install 
+   2) rake db:create
+   3) rake db:seed 
    
    <b> rails s </b>
 
@@ -17,7 +19,7 @@ Things you may want to cover:
 * How to run the test suite-:
  rails test
 
- Admin initial Password -: 
+ Admin initial Password  (seeded) -: 
 
  username -;admin@example.com
  password -: password
