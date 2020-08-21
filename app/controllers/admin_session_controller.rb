@@ -13,6 +13,7 @@ class AdminSessionController < ApplicationController
 
     def destroy 
         session[:admin] = nil 
+        session[:id] = nil
         redirect_to root_path , danger: "Admin Logged Out!"
     end
 end

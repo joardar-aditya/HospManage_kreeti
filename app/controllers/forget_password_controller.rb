@@ -5,8 +5,7 @@ class ForgetPasswordController < ApplicationController
     def forgetp
         @user = Staff.find_by_email(params[:email])
         if @user 
-            @user.f_pass = true 
-            if  @user.save! 
+            if  @user.update_attribute(:f_pass, true) 
               redirect_to "/", success: "Admin notified! Your new password would be set soon!"
             else 
                redirect_to "/forget_password", danger: "Error!"

@@ -12,8 +12,7 @@ class StaffsController < ApplicationController
 
     def update 
      @staff = Staff.find(session[:id])
-     @staff.update(permit_params)
-     if @staff.save
+     if @staff.update(permit_params)
         redirect_to "/", success: "Password Updated Successfully"
      else 
         flash.now[:danger] = "Operation failed!"

@@ -1,5 +1,5 @@
 <% if current_user == nil %>
-<h2 class = " container my-2"> Staff Login </h2>
+<h2 class = " container my-2"> User Login </h2>
 <div class="container border px-2">
     <%= form_tag '/session' do %>
     <div>
@@ -23,29 +23,6 @@
 </div>
 <% end %>
 
-<% if current_admin_user == nil %>
-<h2 class = " container my-2"> Admin Login </h2>
-<div class="container border my-3 py-3 px-2">
-    <%= form_tag '/admin_session' do %>
-    <div>
-       <%= label_tag :email %>
-       <%= text_field_tag :email, params[:email] %> 
-
-    </div>
-    <div> 
-        <%= label_tag :password %>
-        <%= password_field_tag :password %>
-
-    </div>
-
-    <%= submit_tag "Log in as Admin" %>
-
-
-    <% end %>     
-
-
-</div>
-<% end %>
 
 <div class= "container border my-4">
      <h1 class="text-center"> Welcome to HospManager </h1>

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :forget_password
   resources :admin_session
   get '/login', to: 'session#new'
+  get '/session', to: 'session#new'
   get '/admin_logout', to: 'admin_session#destroy', as: 'admin_session_logout'
   put '/forgetp_request', to: 'forget_password#forgetp', as: 'forget_password_request'
   delete '/logout', to: 'session#destroy'

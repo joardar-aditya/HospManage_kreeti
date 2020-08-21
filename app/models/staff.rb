@@ -6,6 +6,6 @@ class Staff < ApplicationRecord
   validates :email, uniqueness: true
   validates :name, presence: true
   validates :email, presence: true 
-  validates :password, length: { minimum: 6 }, :on => :save
+  validates :password, presence: { on: create }, length: { minimum: 6 }, if: -> { password.present? }
   has_many :patient, dependent: :destroy
 end
