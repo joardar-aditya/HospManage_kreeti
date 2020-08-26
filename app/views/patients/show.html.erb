@@ -5,11 +5,43 @@
     <div><%= @patient.disease %></div> 
     <h3 class="my-2">Registered at:</h3>
     <div><%= @patient.created_at.to_formatted_s(:long)%></div>
+    <h3 class="my-2">Your Status:</h3>
+    <div><%= @patient.status%></div>
+
+    <%= form_for :patient , url:"/patients/#{@patient.id}/change_status" , method: :post do |f|  %>
+        <div> <%= f.select :status, options_for_select(["Admitted", "Emergency", 'Released']), include_blank: false %></div>
+         <%= f.submit "Update Status", disable_with: 'Update Status' %>
+    <% end %>
+
+
+
 
     <div class="my-2">
       <a href="<%= edit_patient_path %>"> <button class="btn btn-primary">Edit Patient </button> </a>
 
     </div>
+
+    <div class="my-2">
+      <a href="<%= new_patient_appointment_path(@patient.id) %>"> <button class="btn btn-primary">Add an Appointment</button> </a>
+    </div>
+
+    <div class="my-2">
+
+       <h2>  Your Appointments  </h2>
+        <% @appointments.each do |app| %>
+
+           <div class="container border my-2 mx-2"> 
+            
+            <h2><%= app.Date.to_s %></h2>
+            <div><%= app.Time.to_s %></div>
+
+        </div>
+
+
+        <% end %>
+    
+
+    </div> 
 
 
 </div>

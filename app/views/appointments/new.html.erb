@@ -1,0 +1,11 @@
+<div class="container">
+   <h1> Add a new Appointment </h1>
+
+   <%= form_for :appointment , url: patient_appointments_path(@patient.id), method: :post do |f|  %>
+        <div> <%= f.date_field :Date , class: 'container rounded my-2' %></div>
+        <div> <%= f.text_field :Time , class: 'container rounded my-2' %></div>
+
+         <%= f.submit "Add an Appointment", disable_with: 'Adding ....' %>
+    <% end %>
+
+</div>

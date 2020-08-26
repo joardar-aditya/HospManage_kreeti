@@ -5,6 +5,8 @@
 
 <div class="container">
 
+   <a href=<%= new_patient_path %>> <div class="btn btn-primary my-2"> Add new Patient </div> </a>
+
     <% @patients.each do |p| %>
         
        <a href=<%= patient_path(p.id) %>> <div class="container border my-2 mx-2"> 

@@ -1,7 +1,7 @@
 ActiveAdmin.register Patient do
 
   
-  permit_params :name, :age, :disease, :admitted, :bed_id, :payment_id, :staff_id
+  permit_params :name, :age, :disease, :admitted,:phone, :bed_id, :payment_id, :staff_id, :email, :e_con_email, :e_con_name, :e_con_phone
   
 
   form do |f| 
@@ -9,6 +9,13 @@ ActiveAdmin.register Patient do
     f.inputs "Patent Details" do 
       f.input :name 
       f.input :age
+      f.input :email
+      f.input :dob, label: "Date of birth"
+      f.input :genders_id, :as => :select, :collection => Gender.first(3).collect {|g|  [g.sex, g.id]}
+      f.input :phone, label: "Your Contact"
+      f.input :e_con_name, label: "Emergency contact Name"
+      f.input :e_con_email, label: "Emergency contact Email"
+      f.input :e_con_phone, label: "Emergency contact Phone"
       f.input :disease 
       f.input :admitted , label: 'Is Patient Admitted?'
       f.input :bed_id, :as => :select, :collection => Bed.all.collect {|bed|  [bed.name+ ", price_per_day-Rs."+ bed.price_per_day.to_s, bed.id]}

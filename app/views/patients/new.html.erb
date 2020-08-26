@@ -1,0 +1,67 @@
+<div class="container">
+    <% flash.each do |name, msg| %>
+      <div class="container alert-<%= name %>"><%= msg %></div>
+    <% end %>
+    <h1 class="heading">
+       Add a new Patient 
+   </h1>
+
+   <%= form_with model: @patient do |f| %>
+       <div class="form-group">
+       <%= f.label :name, "Name*" %>
+       <%= f.text_field :name, class: "form-control", required: true %>
+       </div>
+       <div class="form-group">
+       <%= f.label :email, "E-mail*" %>
+       <%= f.text_field :email , class: "form-control", required: true %>
+       <div id="form-id-email"></div>
+       </div>
+       <div class="form-group">
+       <%= f.label :age, "Your Age*" %>
+       <%= f.text_field :age , class: "form-control", required: true %>
+       <div id="form-id-age"></div>
+       </div>
+       <div class="form-group">
+       <%= f.label :phone, "Your Phone Contact*" %>
+       <%= f.text_field :phone , class: "form-control", required: true%>
+       <div id="form-id-phone"></div>
+       </div>
+       <div class="form-group">
+       <%= f.label :disease, "Reason for Appointment" %>
+       <%= f.text_field :disease , class: "form-control"%>
+       </div>
+       <div class="form-group">
+       <%= f.label :genders_id, "Sex*"%>
+       <%= f.collection_select(:genders_id, Gender.first(3), :id, :sex) %>
+       </div>
+       <div class="form-group">
+       <%= f.label :dob, "Your Date of Birth*"%>
+       <%= f.date_field :dob , class: "form-control", required: true%>
+       </div>
+       <div class="form-group">
+       <%= f.label :address, "Address*" %>
+       <%= f.text_field :address , class: "form-control", required: true%>
+       </div>
+       <div class="form-group">
+       <%= f.label :e_con_name, "Emergency Contact Name" %>
+       <%= f.text_field :e_con_name , class: "form-control"%>
+       </div>
+       <div class="form-group">
+       <%= f.label :e_con_phone, "Emergency Contact Phone" %>
+       <%= f.text_field :e_con_phone , class: "form-control"%>
+       </div>
+       <div class="form-group">
+       <%= f.label :e_con_email, "Emergency Contact Email" %>
+       <%= f.text_field :address , class: "form-control"%>
+       </div>
+       <div class="form-group">
+       <%= f.label :status, "Status*"%>
+       <%= f.select :status, options_for_select(["Admitted", "Emergency", 'Released']), include_blank: false %>
+       </div>
+        
+       <%= f.submit "Create" %>
+  <% end %>
+
+
+
+</div>

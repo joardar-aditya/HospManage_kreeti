@@ -12,6 +12,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'activeadmin'
 gem 'arctic_admin'
+gem 'jquery-rails'
+gem 'client_side_validations'
+
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do

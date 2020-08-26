@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  resources :appointments
   ActiveAdmin.routes(self)
   root to: 'session#new'
-  resources :patients
+  resources :patients do 
+    post :change_status
+    resources :appointments 
+  end
   resources :staffs
   resources :forget_password
   resources :admin_session
@@ -9,7 +13,7 @@ Rails.application.routes.draw do
   get '/session', to: 'session#new'
   get '/admin_logout', to: 'admin_session#destroy', as: 'admin_session_logout'
   put '/forgetp_request', to: 'forget_password#forgetp', as: 'forget_password_request'
-  delete '/logout', to: 'session#destroy'
+  get '/logout', to: 'session#destroy'
   post '/session', to: 'session#create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

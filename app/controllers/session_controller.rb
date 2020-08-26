@@ -20,6 +20,6 @@ class SessionController < ApplicationController
     def destroy 
        session[:id] = nil
        session[:admin] = nil
-       redirect_to "/", danger: "Logged out Successfully"
+       redirect_to root_path, danger: "Logged out Successfully"
     end 
 end

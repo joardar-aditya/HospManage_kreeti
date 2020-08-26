@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_21_180017) do
+ActiveRecord::Schema.define(version: 2020_08_26_085008) do
+
+  create_table "appointments", force: :cascade do |t|
+    t.date "Date"
+    t.string "Time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "patient_id"
+    t.index ["patient_id"], name: "index_appointments_on_patient_id"
+  end
 
   create_table "beds", force: :cascade do |t|
     t.string "name"
@@ -19,9 +28,15 @@ ActiveRecord::Schema.define(version: 2020_08_21_180017) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "genders", force: :cascade do |t|
+    t.string "sex"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "patients", force: :cascade do |t|
     t.string "name"
-    t.integer "age"
+    t.string "age"
     t.string "disease"
     t.boolean "admitted"
     t.datetime "created_at", precision: 6, null: false
@@ -29,7 +44,17 @@ ActiveRecord::Schema.define(version: 2020_08_21_180017) do
     t.integer "bed_id"
     t.integer "payment_id"
     t.integer "staff_id"
+    t.string "email"
+    t.integer "genders_id"
+    t.string "address"
+    t.string "phone"
+    t.date "dob"
+    t.string "e_con_name"
+    t.string "e_con_phone"
+    t.string "e_con_email"
+    t.string "status"
     t.index ["bed_id"], name: "index_patients_on_bed_id"
+    t.index ["genders_id"], name: "index_patients_on_genders_id"
     t.index ["payment_id"], name: "index_patients_on_payment_id"
     t.index ["staff_id"], name: "index_patients_on_staff_id"
   end
