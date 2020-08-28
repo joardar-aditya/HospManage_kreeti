@@ -1,6 +1,10 @@
 <div class="py-3 container bg-dark text-light">
    <h1> Your Patients </h1>
 </div>
+   <% flash.each do |name, msg| %>
+      <div class="container alert-<%= name %>"><%= msg %></div>
+    <% end %>
+
 
 
 <div class="container">

@@ -8,6 +8,7 @@
      belongs_to :staff, -> { where doctor: true }, optional: true  
      belongs_to :payment, optional: true
      has_many :appointments
+     validates :phone, presence: true, format: { with: /\d{10}/}
 
     def can_validate?
         true

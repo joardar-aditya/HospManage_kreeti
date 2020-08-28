@@ -1,19 +1,20 @@
 <div class="container">
     <% flash.each do |name, msg| %>
-      <div class="container alert-<%= name %>"><%= msg %></div>
+    <% msg.each do |e| %>
+      <div class="container alert-<%= name %>"><%= e %></div>
+     <% end %> 
     <% end %>
     <h1 class="heading">
        Add a new Patient 
    </h1>
-
-   <%= form_with model: @patient do |f| %>
+   <%= form_for @patient, remote: true do |f| %>
        <div class="form-group">
        <%= f.label :name, "Name*" %>
        <%= f.text_field :name, class: "form-control", required: true %>
        </div>
        <div class="form-group">
        <%= f.label :email, "E-mail*" %>
-       <%= f.text_field :email , class: "form-control", required: true %>
+       <%= f.text_field :email ,class: 'form-control', id: "patient_email", required: true %>
        <div id="form-id-email"></div>
        </div>
        <div class="form-group">
@@ -23,7 +24,7 @@
        </div>
        <div class="form-group">
        <%= f.label :phone, "Your Phone Contact*" %>
-       <%= f.text_field :phone , class: "form-control", required: true%>
+       <%= f.text_field :phone , class: "form-control", id: "phone",  required: true%>
        <div id="form-id-phone"></div>
        </div>
        <div class="form-group">
@@ -47,12 +48,14 @@
        <%= f.text_field :e_con_name , class: "form-control"%>
        </div>
        <div class="form-group">
-       <%= f.label :e_con_phone, "Emergency Contact Phone" %>
-       <%= f.text_field :e_con_phone , class: "form-control"%>
+       <%= f.label :e_con_email, "Emergency Contact E-mail" %>
+       <%= f.text_field :e_con_email , class: "form-control", id:"e-con-email" %>
+       <div id="form-id-eemail"></div>
        </div>
        <div class="form-group">
-       <%= f.label :e_con_email, "Emergency Contact Email" %>
-       <%= f.text_field :address , class: "form-control"%>
+       <%= f.label :e_con_phone, "Emergency Contact Phone" %>
+       <%= f.text_field :e_con_phone ,id: "e-con-phone", class: "form-control"%>
+       <div id="econp"></div>
        </div>
        <div class="form-group">
        <%= f.label :status, "Status*"%>

@@ -21,9 +21,7 @@
            <%=  render  "layouts/nav" %>
 
      </header>
-     <% flash.each do |name, msg| %>
-      <div class="container alert-<%= name %>"><%= msg %></div>
-    <% end %>
+     
     <%= yield %>
   </body>
 </html>

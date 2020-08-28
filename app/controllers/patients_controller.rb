@@ -5,16 +5,35 @@ class PatientsController < ApplicationController
     def new 
       @patient = Patient.new
     end 
+    
+    respond_to :html, :json, :js
 
     def create 
         @patient = Patient.create(create_params)
-        if @patient.save! 
-          redirect_to patient_path(@patient) , success: "New Patient Added!"
-        else 
-          flash.now[:danger] = "Error!"  
-          render "new" 
+        respond_to do |format| 
+          if @patient.valid? 
+            PatientMailer.with(user: @patient).new_registration.deliver_later
+            format.html {redirect_to } 
+             format.js { render :template => 'patients/create.js.erb' 
+                      }
+          else
+             flash.now[:danger] = @patient.errors.full_messages
+             format.html {render "new"} 
+             format.json { render json: @patient.errors } 
+          end
+          format.json { render json: @patient.errors } 
         end 
     end
+
+    def check_validation_email 
+            puts params
+            @patient = Patient.find_by_email(params[:email])
+            if @patient == nil 
+              render json: {alert:200, message: ""}
+            else 
+              render json: {alert:400, message: "Email already exists"}
+            end 
+    end 
     
     def index 
         #Add Admin roles 

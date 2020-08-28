@@ -13,7 +13,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'activeadmin'
 gem 'arctic_admin'
 gem 'jquery-rails'
-gem 'client_side_validations'
+gem "letter_opener", :group => :development
 
 gem 'bootsnap', '>= 1.4.2', require: false
 

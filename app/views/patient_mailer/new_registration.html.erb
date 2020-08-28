@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to HospManage, <%= @user.name %></h1>
+    <p>
+      We have got your details -: <br>
+      <b>Phone -:</b> <%= @user.phone %> <br>
+      <b>Disease -:</b> <%= @user.disease %> <br>
+    </p>
+    <p>
+      For any error, please contact us soon!.
+    </p>
+    <p>Wish you a healthy life!</p> <br>
+    <%= image_tag attachments['image.jpg'].url , alt: 'Logo', size: "128x128"%>
+  </body>
+</html>
