@@ -10,7 +10,16 @@
 <div class="container">
 
    <a href=<%= new_patient_path %>> <div class="btn btn-primary my-2"> Add new Patient </div> </a>
+   <div class="my-2">
+       <%= form_with(url: patients_path, method: "get", local: true) do %>
+               <%= label_tag(:q, "Search for:") %>
+                <%=  select_tag(:option, options_for_select(["Id", "name", "email"]))  %>
+                <%= text_field_tag(:search) %>
+                <%= submit_tag("Search") %>
+        <% end %>
 
+   </div>
+   <div>
     <% @patients.each do |p| %>
         
        <a href=<%= patient_path(p.id) %>> <div class="container border my-2 mx-2"> 

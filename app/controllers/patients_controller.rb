@@ -1,5 +1,6 @@
 class PatientsController < ApplicationController
     include ApplicationHelper
+    include PatientsHelper
     before_action :authorize 
 
     def new 
@@ -38,12 +39,24 @@ class PatientsController < ApplicationController
     def index 
         #Add Admin roles 
         if current_admin_user != nil 
+          if patient_params[:search] == nil
             @patients = Patient.all
+          else
+            search(patient_params[:search], patient_params[:option])
+          end  
         else
           if !current_user.doctor
+           if patient_params[:search] == nil 
             @patients = Patient.all
+           else 
+            search(patient_params[:search], patient_params[:option])
+           end 
           else 
+           if patient_params[:search] == nil 
             @patients = Patient.all.where(staff_id: current_user.id)
+           else 
+            search_staff(patient_params[:search], patient_params[:option], current_user.id )
+           end
           end 
         end
     end 
@@ -89,5 +102,9 @@ class PatientsController < ApplicationController
     def update_status 
         params.require(:patient).permit(:status)
     end
+
+    def patient_params 
+      params.permit(:option, :search, :commit)
+    end 
 
 end
