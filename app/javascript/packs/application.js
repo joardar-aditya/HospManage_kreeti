@@ -24,50 +24,7 @@ $(document).ready(function() {
         }
     )
 
-    //phone-number 
-    $("#phone").change(
-        function(event) {
-            console.log(this.value)
-            if(this.value.length == 10){
-                //do nothing
-                $("#form-id-phone").html("")
-            }else{
-                //error!
-                $("#form-id-phone").css({"color": "red"})
-                $("#form-id-phone").html("Phone number might not be corrected!")
-            }
-        }
-    )
-
-    //email-of-emergency-contact 
-    $("#e-con-email").change(
-        function(event){
-            let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-        if(regex.test(this.value)){
-            $("#form-id-eemail").html("")
-        }else{
-            $("#form-id-eemail").css({"color" : "red"})
-            $("#form-id-eemail").html("E-mail format not correct!")
-        }
     
-    }
-    )
-
-    //phone-of-emergency-contact
-    $("#e-con-phone").change(
-        function(event){
-            if(this.value.length == 10){
-                $("#econp").html("")
-            }else{
-                $("#econp").css({
-                    "color" : "red"
-                })
-                $("#econp").html("Phone number is not in correct format")
-            }
-        }
-    )
-
-
 
 
 

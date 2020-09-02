@@ -8,4 +8,10 @@ class PatientMailer < ApplicationMailer
          mail(to: @user.email, subject: "You Have been registered!" )
 
     end 
+
+    def status_change 
+       @user = params[:user]
+       attachments.inline['image.jpg'] = File.read('./public/hospital-image.jpg')
+       mail(to: @user.email, subject: "Your Status has been changed!")
+    end 
 end

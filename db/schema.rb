@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_26_085008) do
+ActiveRecord::Schema.define(version: 2020_09_02_070048) do
 
   create_table "appointments", force: :cascade do |t|
     t.date "Date"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 2020_08_26_085008) do
     t.string "e_con_phone"
     t.string "e_con_email"
     t.string "status"
+    t.string "ref_num"
+    t.date "appointment"
     t.index ["bed_id"], name: "index_patients_on_bed_id"
     t.index ["genders_id"], name: "index_patients_on_genders_id"
     t.index ["payment_id"], name: "index_patients_on_payment_id"

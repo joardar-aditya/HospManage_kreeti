@@ -8,29 +8,47 @@
 
 
 <div class="container">
-
+  <div class="row justify-content-between">
    <a href=<%= new_patient_path %>> <div class="btn btn-primary my-2"> Add new Patient </div> </a>
-   <div class="my-2">
+   <a href="/patients?sort=1"><div class="btn btn-primary my-2"> Sort </div>  </a>
+   </div>
+   <div class="my-2">   
        <%= form_with(url: patients_path, method: "get", local: true) do %>
                <%= label_tag(:q, "Search for:") %>
                 <%=  select_tag(:option, options_for_select(["Id", "name", "email"]))  %>
                 <%= text_field_tag(:search) %>
+                <div> Appointment Date : <%= date_field_tag(:appointment) %> </div>
                 <%= submit_tag("Search") %>
         <% end %>
 
    </div>
-   <div>
+   <table class="table">
+   <thead>
+       <tr>
+        <th>Name</th>
+        <th>Disease</th>
+        <th>Age</th>
+        <th>Status</th>
+      </tr>
+
+
+   </thead>
+
+   <tbody>
     <% @patients.each do |p| %>
         
-       <a href=<%= patient_path(p.id) %>> <div class="container border my-2 mx-2"> 
-            
-            <h2><%= p.name %></h2>
-            <div><%= p.disease %></div>
+        <tr class="container border my-2 mx-2"> 
+            <td><h2><%= p.name %></h2></td>
+            <td><%= p.disease %></td>
+            <td><%= p.age   %></td>
+            <td><%= p.status %></td>
+            <td><a href=<%= patient_path(p.id) %>> <h3>Show</h3> </a></td>
 
-        </div> </a>
+        </tr> 
       
 
     <% end %>
+    </tbody>
 
 
 

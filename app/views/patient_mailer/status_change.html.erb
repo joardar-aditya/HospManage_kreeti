@@ -4,12 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to HospManage, <%= @user.name %></h1>
+    <h1>Dear, <%= @user.name %></h1>
     <p>
-      We have got your details -: <br>
-      <b>Phone -:</b> <%= @user.phone %> <br>
-      <b>Disease -:</b> <%= @user.disease %> <br>
-      <b> Reference Number -: </b> <%= @user.ref_num %> 
+      Your Status has been changed to : <b> <%= @user.status %> </b>
     </p>
     <p>
       For any error, please contact us soon!.

@@ -1,15 +1,76 @@
 <div class="container">
+   <% flash.each do |name, msg| %>
+      <div class="container alert-<%= name %>"><%= msg %></div> 
+    <% end %>
+
+   <% if @patient.errors.any? %>
+     <div id="error_explanation">
+        <h3 class="text-danger"><%= pluralize(@patient.errors.count, "error") %>  found:</h3>
+ 
+      <ul>
+    <% @patient.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+    
     <h1 class= "my-2">Edit Patient Details </h1>
-    <%= form_for @patient, :method => :PUT do |form| %>
-       <div> Name: </div>
-       <div><%= form.text_field :name %></div>
-       <div> Disease </div>
-       <div><%= form.text_field :disease %></div>
-       <div> Age: </div>
-       <div><%= form.number_field :age %></div>
-       <div> Admitted? </div>
-       <div><%= form.check_box :admitted %></div>
-       <%= form.submit disable_with: "Submitting...." %>
+    <%= form_for @patient, :method => :PUT do |f| %>
+       <div class="form-group">
+       <%= f.label :name, "Name*" %>
+       <%= f.text_field :name, class: "form-control", required: true %>
+       </div>
+       <div class="form-group">
+       <%= f.label :email, "E-mail*" %>
+       <%= f.text_field :email ,class: 'form-control', id: "patient_email", required: true %>
+       <div id="form-id-email"></div>
+       </div>
+       <div class="form-group">
+       <%= f.label :age, "Your Age*" %>
+       <%= f.text_field :age , class: "form-control", required: true %>
+       <div id="form-id-age"></div>
+       </div>
+       <div class="form-group">
+       <%= f.label :phone, "Your Phone Contact*" %>
+       <%= f.text_field :phone , class: "form-control", id: "phone",  required: true%>
+       <div id="form-id-phone"></div>
+       </div>
+       <div class="form-group">
+       <%= f.label :disease, "Reason for Appointment" %>
+       <%= f.text_field :disease , class: "form-control"%>
+       </div>
+       <div class="form-group">
+       <%= f.label :genders_id, "Sex*"%>
+       <%= f.collection_select(:genders_id, Gender.first(3), :id, :sex) %>
+       </div>
+       <div class="form-group">
+       <%= f.label :dob, "Your Date of Birth*"%>
+       <%= f.date_field :dob , class: "form-control", required: true%>
+       </div>
+       <div class="form-group">
+       <%= f.label :address, "Address*" %>
+       <%= f.text_field :address , class: "form-control", required: true%>
+       </div>
+       <div class="form-group">
+       <%= f.label :e_con_name, "Emergency Contact Name" %>
+       <%= f.text_field :e_con_name , class: "form-control"%>
+       </div>
+       <div class="form-group">
+       <%= f.label :e_con_email, "Emergency Contact E-mail" %>
+       <%= f.text_field :e_con_email , class: "form-control", id:"e-con-email" %>
+       <div id="form-id-eemail"></div>
+       </div>
+       <div class="form-group">
+       <%= f.label :e_con_phone, "Emergency Contact Phone" %>
+       <%= f.text_field :e_con_phone ,id: "e-con-phone", class: "form-control"%>
+       <div id="econp"></div>
+       </div>
+       <div class="form-group">
+       <%= f.label :status, "Status*"%>
+       <%= f.select :status, options_for_select(["Admitted", "Emergency", 'Released']), include_blank: false %>
+       </div>
+       <%= f.submit disable_with: "Submitting...." %>
 
 
 

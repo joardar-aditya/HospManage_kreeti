@@ -1,7 +1,8 @@
 <div class="container">
+   
     <h1 class="my-2">Name</h1>
     <div><%= @patient.name %></div>
-    <h3 class="my-2">Diagnosed for</h3>
+    <h1 class="my-2">Diagnosed for</h3>
     <div><%= @patient.disease %></div> 
     <h3 class="my-2">Registered at:</h3>
     <div><%= @patient.created_at.to_formatted_s(:long)%></div>
