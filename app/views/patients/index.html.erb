@@ -25,6 +25,7 @@
    <table class="table">
    <thead>
        <tr>
+        <th> Ref. no. </th>
         <th>Name</th>
         <th>Disease</th>
         <th>Age</th>
@@ -38,6 +39,7 @@
     <% @patients.each do |p| %>
         
         <tr class="container border my-2 mx-2"> 
+            <td><%= p.ref_num %></td>
             <td><h2><%= p.name %></h2></td>
             <td><%= p.disease %></td>
             <td><%= p.age   %></td>
