@@ -10,7 +10,7 @@
 <div class="container">
   <div class="row justify-content-between">
    <a href=<%= new_patient_path %>> <div class="btn btn-primary my-2"> Add new Patient </div> </a>
-   <a href="/patients?sort=1"><div class="btn btn-primary my-2"> Sort </div>  </a>
+   <a href="/sort"><div class="btn btn-primary my-2"> Sort </div>  </a>
    </div>
    <div class="my-2">   
        <%= form_with(url: patients_path, method: "get", local: true) do %>

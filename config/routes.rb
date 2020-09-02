@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :staffs
   resources :forget_password
   resources :admin_session
+  get "/sort", controller: 'patients', action: 'sort_patients'
   post '/patients/check_validation_email',  controller: 'patients', action: 'check_validation_email'
   get '/login', to: 'session#new'
   get '/session', to: 'session#new'

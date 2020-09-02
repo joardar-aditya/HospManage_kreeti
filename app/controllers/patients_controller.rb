@@ -6,8 +6,15 @@ class PatientsController < ApplicationController
     def new 
       @patient = Patient.new
     end 
+
+    
     
     respond_to :html, :json, :js
+
+    def sort_patients 
+      @patients = Patient.order(:created_at)
+      render "index"
+    end 
 
     def create 
         pa = Patient.find_by(email: create_params[:email])
@@ -40,8 +47,6 @@ class PatientsController < ApplicationController
         if current_admin_user != nil 
           if patient_params[:search] == nil && patient_params[:appointment] == nil
             @patients = Patient.all 
-          elsif sort_params[:sort] == 1
-            @patients = Patient.order('created_at DESC') 
           else
             search(patient_params[:search], patient_params[:option], patient_params[:appointment])
           end  
@@ -59,7 +64,7 @@ class PatientsController < ApplicationController
             search_staff(patient_params[:search], patient_params[:option], current_user.id )
            end
           end 
-        end
+        end 
     end 
 
     def edit 
