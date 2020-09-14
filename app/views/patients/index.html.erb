@@ -39,12 +39,11 @@
     <% @patients.each do |p| %>
         
         <tr class="container border my-2 mx-2"> 
-            <td><%= p.ref_num %></td>
+            <td><a href=<%= patient_path(p.id) %>> <%= p.ref_num %></a></td>
             <td><h2><%= p.name %></h2></td>
             <td><%= p.disease %></td>
             <td><%= p.age   %></td>
             <td><%= p.status %></td>
-            <td><a href=<%= patient_path(p.id) %>> <h3>Show</h3> </a></td>
 
         </tr> 
       

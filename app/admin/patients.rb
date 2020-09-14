@@ -35,6 +35,18 @@ ActiveAdmin.register Patient do
     @patient = Patient.find(params[:id])
 
     redirect_to "/patients/#{@patient.id}/generateinvoice.pdf"
-  end     
+  end  
+  
+  sidebar :downloads, only: :show do
+    h3 "Voter Id Card"
+    @patient = Patient.find params[:id]
+    if @patient.voter_id.attached?
+       link_to  'Download' , url_for(@patient.voter_id)
+    else 
+      "N/A"
+    end   
+  end
+  
+  
   
 end

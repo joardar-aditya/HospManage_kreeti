@@ -4,12 +4,14 @@ Rails.application.routes.draw do
   root to: 'session#new'
   resources :patients do 
     post :change_status
-    get  :generateinvoice
     resources :appointments 
   end
   resources :staffs
   resources :forget_password
   resources :admin_session
+
+  post '/generateinvoices', controller: 'patients', action: 'generateinvoice'
+  get "/invoices", controller: 'patients', action: 'invoices'
   get "/sort", controller: 'patients', action: 'sort_patients'
   post '/patients/check_validation_email',  controller: 'patients', action: 'check_validation_email'
   get '/login', to: 'session#new'

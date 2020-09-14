@@ -6,6 +6,11 @@ class PatientsController < ApplicationController
 
     def new 
       @patient = Patient.new
+    end
+    
+    
+    def invoices 
+      @patients = Patient.all
     end 
 
     
@@ -21,12 +26,13 @@ class PatientsController < ApplicationController
         pa = Patient.find_by(email: create_params[:email])
         if pa.nil?
           @patient = Patient.create(create_params)
-            if @patient.valid? 
+          @patient.voter_id.attach(params[:voter_id])
+            if @patient.valid? && @patient.voter_id.attached?
                add_patient_reference(@patient)
                PatientMailer.with(user: @patient).new_registration.deliver_later
                redirect_to patient_path(@patient)
             else
-             render "new"
+             render "new" , danger: "Some Error Occured!"
             end
         else 
           redirect_to edit_patient_path(pa), danger: "Already Registered!"
@@ -46,10 +52,10 @@ class PatientsController < ApplicationController
     respond_to :html, :pdf
 
     def generateinvoice 
-          @patient = Patient.find params[:patient_id]
+          @patient = Patient.find invoice_params[:id]
+          @total = invoice_params[:total]
 
-          respond_to do |format| 
-            format.html 
+          respond_to do |format|  
             format.pdf do 
               render pdf: "Invoice4#{@patient.name}",
               page_size: "A4",
@@ -60,6 +66,7 @@ class PatientsController < ApplicationController
               zoom: 1,
               dpi: 75
             end 
+            format.html { redirect_to admin_root_path }
           end 
      end      
            
@@ -125,7 +132,7 @@ class PatientsController < ApplicationController
     end 
 
     def create_params 
-        params.require(:patient).permit(:age, :name, :email, :phone, :disease, :genders_id, :dob, :address, :e_con_name, :e_con_phone, :e_con_email, :status, :bedno, :admittedEmerg)
+        params.require(:patient).permit(:age, :name, :email, :phone, :disease, :genders_id, :dob, :address, :e_con_name, :e_con_phone, :e_con_email, :status, :bedno,:voter_id, :admittedEmerg)
     end 
 
     def update_status 
@@ -134,6 +141,10 @@ class PatientsController < ApplicationController
 
     def patient_params 
       params.permit(:option, :search, :commit, :appointment)
+    end 
+
+    def invoice_params 
+      params.require(:patient).permit(:total, :id)
     end 
 
     def sort_params 

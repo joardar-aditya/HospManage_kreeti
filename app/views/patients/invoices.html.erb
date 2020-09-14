@@ -1,0 +1,26 @@
+<div class="container-fluid">
+   <div class="container-fluid p-3 mb-3 bg-secondary text-light">
+     
+     <h3> Invoices</h3>
+ 
+   </div>
+   <%= form_for :patient, url: "/generateinvoices.pdf", method: :post  do |f| %>
+      <div><%= f.label :id , "Patient Name:"%></div>
+      <div><%= f.collection_select :id, @patients, :id, :name , include_blank: true %></div>
+      
+      <div><%= f.label :total, "Total" %></div>
+      <div><%= f.number_field :total %></div>
+      
+      <div class="my-2"> <%= f.submit "Submit", disable_with: 'Submiting....' %>  </div>
+
+
+
+   <% end %>
+
+
+
+
+
+
+
+</div>
