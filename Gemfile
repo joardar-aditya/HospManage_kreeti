@@ -12,6 +12,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'activeadmin'
 gem 'arctic_admin'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 gem 'jquery-rails'
 gem "letter_opener", :group => :development
 

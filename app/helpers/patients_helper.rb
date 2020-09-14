@@ -1,21 +1,21 @@
 module PatientsHelper
     def search(name, option, date)
          @patients = Patient.all 
-         if date != nil 
+         if date.to_s != "" 
            @patients =  Patient.joins(:appointments).where(appointments: {Date: date})
 
          end 
-         if option == "Id"
-            if name.to_i >= 1  
-               @patients = @patients.where(id:name.to_i)
-            end 
+         if option == "Id" 
+              if name != nil
+                 @patients = @patients.where("ref_num LIKE ?", "#{name}")
+              end
          elsif option == "name"
             if name != nil 
                @patients = @patients.where("name LIKE ?", "%#{name}%")
             end  
          else 
             if name != nil 
-                  @patients = @patients.where(email: name)
+                  @patients = @patients.where("dob LIKE ?", "%#{name}%")
             end 
          end 
     end 

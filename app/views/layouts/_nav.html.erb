@@ -2,7 +2,7 @@
          <ul class="navbar-nav">
             <li class="mx-2"><%= link_to "Admin Panel", "/admin", method: "get" %></li>
             <% if current_user != nil || current_admin_user != nil %>
-                 <li class="mx-2"><%= link_to "Dashboard", "/patients", method: "get" %></li>
+                 <li class="mx-2"><%= link_to "Patients", "/patients", method: "get" %></li>
                  <% if current_user != nil %>
                  <li class="mr-2"><%= link_to "Logout", logout_path, method: :get %></li>
                  <% end %>

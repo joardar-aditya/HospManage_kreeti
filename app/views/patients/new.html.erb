@@ -69,6 +69,20 @@
        <div id="econp"></div>
        </div>
        <div class="form-group">
+       <%= f.label :bedno, "Bed Number" %>
+       <%= f.number_field :bedno ,id: "bedno", class: "form-control"%>
+       <div id="bedno"></div>
+       </div>
+        <div class="form-group">
+       <%= f.label :admittedEmerg, "Emergency admitted" %>
+       <%= f.check_box :admittedEmerg %>
+       <div id="econp"></div>
+       </div>
+       <div class="form-group">
+       <div><%= f.label :voter_id, "Scanned Copy or PhotoCopy of your Voter's Id:" %></div>
+       <%= f.file_field :voter_id %>
+       </div>
+       <div class="form-group">
        <%= f.label :status, "Status*"%>
        <%= f.select :status, options_for_select(["Admitted", "Emergency", 'Released']), include_blank: false %>
        </div>

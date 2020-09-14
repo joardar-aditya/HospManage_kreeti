@@ -1,5 +1,6 @@
  class Patient < ApplicationRecord
      include ActiveModel::Validations 
+     has_one_attached :voter_id
      validates :name, presence: true
      validates :email, format: { with: /\A[^@\s]+@[^@\s]+\z/ }, presence: true, uniqueness: true, if: :can_validate?
      validates :age, presence: true 

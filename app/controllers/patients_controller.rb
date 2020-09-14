@@ -2,6 +2,7 @@ class PatientsController < ApplicationController
     include ApplicationHelper
     include PatientsHelper
     before_action :authorize 
+    before_action :authenticate_admin_user! , only: [:generateinvoice]
 
     def new 
       @patient = Patient.new
@@ -40,7 +41,28 @@ class PatientsController < ApplicationController
             else 
               render json: {alert:400, message: "Email already exists"}
             end 
-    end 
+    end
+    
+    respond_to :html, :pdf
+
+    def generateinvoice 
+          @patient = Patient.find params[:patient_id]
+
+          respond_to do |format| 
+            format.html 
+            format.pdf do 
+              render pdf: "Invoice4#{@patient.name}",
+              page_size: "A4",
+              template: "/patients/generateinvoice.html.erb",
+              layout: "pdf.html",
+              orientation: "Landscape",
+              lowquality: true,
+              zoom: 1,
+              dpi: 75
+            end 
+          end 
+     end      
+           
     
     def index 
         #Add Admin roles 
@@ -103,7 +125,7 @@ class PatientsController < ApplicationController
     end 
 
     def create_params 
-        params.require(:patient).permit(:age, :name, :email, :phone, :disease, :genders_id, :dob, :address, :e_con_name, :e_con_phone, :e_con_email, :status)
+        params.require(:patient).permit(:age, :name, :email, :phone, :disease, :genders_id, :dob, :address, :e_con_name, :e_con_phone, :e_con_email, :status, :bedno, :admittedEmerg)
     end 
 
     def update_status 

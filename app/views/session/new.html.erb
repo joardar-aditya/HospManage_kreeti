@@ -1,28 +1,14 @@
-<% if current_user == nil %>
-<h2 class = " container my-2"> User Login </h2>
-<div class="container border px-2">
-    <%= form_tag '/session' do %>
-    <div>
-       <%= label_tag :email %>
-       <%= text_field_tag :email, params[:email] %> 
-
-    </div>
-    <div> 
-        <%= label_tag :password %>
-        <%= password_field_tag :password %>
-
-    </div>
-
-    <%= submit_tag "Log in" %>
-    <a href="/forget_password"><%= button_tag 'Forget password' %></a>
+<% flash.each do |label, data| %>
+    
+    <div class="container alert-<%= label%>"> <%= data %> </div>
 
 
-    <% end %>     
-
-
-</div>
 <% end %>
 
+
+<div class="row">
+
+<div class="col">
 
 <div class= "container border my-4">
      <h1 class="text-center"> Welcome to HospManager </h1>
@@ -50,6 +36,38 @@
 
 
 
+
+
+</div>
+</div>
+
+<div class="col my-3">
+
+<% if current_user == nil %>
+<h2 class = " container my-2"> User Login </h2>
+<div class="container border px-2">
+    <%= form_tag '/session' do %>
+    <div>
+       <%= label_tag :email %>
+       <%= text_field_tag :email, params[:email] %> 
+
+    </div>
+    <div> 
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+
+    </div>
+
+    <%= submit_tag "Log in" %>
+    <a href="/forget_password"><%= button_tag 'Forget password' %></a>
+    
+
+    <% end %>     
+
+
+</div>
+<% end %>
+</div>
 
 
 </div>

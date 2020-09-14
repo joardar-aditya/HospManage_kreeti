@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'session#new'
   resources :patients do 
     post :change_status
+    get  :generateinvoice
     resources :appointments 
   end
   resources :staffs

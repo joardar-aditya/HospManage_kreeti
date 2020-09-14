@@ -23,5 +23,18 @@ ActiveAdmin.register Patient do
       f.input :staff_id,  :as => :select, :collection => Staff.where(doctor: true).collect {|doc| [doc.name + "-" +doc.designation, doc.id]}
     end
     f.actions
-  end  
+  end
+  
+  action_item :generateinvoice, only: :show do
+    link_to  'Get Invoice' ,  generateinvoice_admin_patient_path
+  end
+
+  
+
+  member_action :generateinvoice do
+    @patient = Patient.find(params[:id])
+
+    redirect_to "/patients/#{@patient.id}/generateinvoice.pdf"
+  end     
+  
 end
