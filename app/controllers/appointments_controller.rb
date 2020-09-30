@@ -10,14 +10,14 @@ class AppointmentsController < ApplicationController
         if @appointment.save!
             redirect_to "/patients", success: "Appointment Added"
         else 
-            render "new"
+            render "new", danger: "Appointment not created"
         end 
     end 
     
     private 
 
     def add_app 
-          params.require(:appointment).permit(:Date, :Time)
+          params.require(:appointment).permit(:date, :time)
     end 
     
 end

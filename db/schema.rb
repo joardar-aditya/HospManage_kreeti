@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_13_161415) do
+ActiveRecord::Schema.define(version: 2020_09_17_175554) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(version: 2020_09_13_161415) do
   end
 
   create_table "appointments", force: :cascade do |t|
-    t.date "Date"
-    t.string "Time"
+    t.date "date"
+    t.string "time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "patient_id"
@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(version: 2020_09_13_161415) do
     t.string "status"
     t.string "ref_num"
     t.date "appointment"
-    t.boolean "admittedEmerg"
-    t.integer "bedno"
+    t.boolean "admit_emergency"
+    t.integer "bed_no"
     t.index ["bed_id"], name: "index_patients_on_bed_id"
     t.index ["genders_id"], name: "index_patients_on_genders_id"
     t.index ["payment_id"], name: "index_patients_on_payment_id"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2020_09_13_161415) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.string "paymenttype"
+    t.string "payment_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -103,7 +103,6 @@ ActiveRecord::Schema.define(version: 2020_09_13_161415) do
     t.boolean "doctor"
     t.boolean "admin"
     t.integer "un_attempt"
-    t.boolean "admittedEmerg"
     t.index ["email"], name: "index_staffs_on_email", unique: true
   end
 

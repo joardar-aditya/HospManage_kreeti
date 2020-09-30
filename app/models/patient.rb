@@ -10,6 +10,10 @@
      belongs_to :payment, optional: true
      has_many :appointments
      validates :phone, presence: true, format: { with: /\d{10}/}
+     scope :search_refno, -> (name) { where("ref_num LIKE ?", "%#{name}%") }
+     scope :search_name, -> (name) { where("name LIKE ?", "%#{name}%")}
+     scope :search_dob, -> (name) { where("dob LIKE ?", "%#{name}%") }
+
 
     def can_validate?
         true

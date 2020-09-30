@@ -7,15 +7,15 @@ module PatientsHelper
          end 
          if option == "Id" 
               if name != nil
-                 @patients = @patients.where("ref_num LIKE ?", "#{name}")
+                 Patient.search_refno(name)
               end
          elsif option == "name"
             if name != nil 
-               @patients = @patients.where("name LIKE ?", "%#{name}%")
+               Patient.search_name(name)
             end  
          else 
             if name != nil 
-                  @patients = @patients.where("dob LIKE ?", "%#{name}%")
+                  Patient.search_don(name)
             end 
          end 
     end 

@@ -132,7 +132,7 @@ class PatientsController < ApplicationController
     end 
 
     def create_params 
-        params.require(:patient).permit(:age, :name, :email, :phone, :disease, :genders_id, :dob, :address, :e_con_name, :e_con_phone, :e_con_email, :status, :bedno,:voter_id, :admittedEmerg)
+        params.require(:patient).permit(:age, :name, :email, :phone, :disease, :genders_id, :dob, :address, :e_con_name, :e_con_phone, :e_con_email, :status, :bed_no,:voter_id, :admit_emergency)
     end 
 
     def update_status 
