@@ -18,25 +18,28 @@ class PatientsController < ApplicationController
     respond_to :html, :json, :js
 
     def sort_patients 
-      @patients = Patient.order(:created_at)
+      if current_admin_user != nil 
+        index_patients_admin(patient_params[:search])
+      else
+        index_patient_others(patient_params[:search])
+      end 
+      @patients.sort_by &:created_at
       render "index"
     end 
 
     def create 
-        pa = Patient.find_by(email: create_params[:email])
-        if pa.nil?
-          @patient = Patient.create(create_params)
-          @patient.voter_id.attach(params[:voter_id])
-            if @patient.valid? && @patient.voter_id.attached?
-               add_patient_reference(@patient)
-               PatientMailer.with(user: @patient).new_registration.deliver_later
-               redirect_to patient_path(@patient)
-            else
-             render "new" , danger: "Some Error Occured!"
-            end
-        else 
-          redirect_to edit_patient_path(pa), danger: "Already Registered!"
-        end   
+      pa = Patient.find_by(email: create_params[:email])
+      if pa.nil?
+        @patient = Patient.create(create_params)
+        if @patient.valid? && @patient.voter_id.attached?
+          add_patient_staff(@patient)
+          redirect_to patient_path(@patient), success: "Registered!"  
+        else
+          render "new" , danger: "Some Error Occured!"
+        end
+      else 
+        redirect_to edit_patient_path(pa), danger: "Already Registered!"
+      end   
     end
 
     def check_validation_email 
@@ -74,25 +77,9 @@ class PatientsController < ApplicationController
     def index 
         #Add Admin roles 
         if current_admin_user != nil 
-          if patient_params[:search] == nil && patient_params[:appointment] == nil
-            @patients = Patient.all 
-          else
-            search(patient_params[:search], patient_params[:option], patient_params[:appointment])
-          end  
+          index_patients_admin(patient_params[:search])
         else
-          if !current_user.doctor
-           if patient_params[:search] == nil 
-            @patients = Patient.all
-           else 
-            search(patient_params[:search], patient_params[:option])
-           end 
-          else 
-           if patient_params[:search] == nil 
-            @patients = Patient.all.where(staff_id: current_user.id)
-           else 
-            search_staff(patient_params[:search], patient_params[:option], current_user.id )
-           end
-          end 
+          index_patient_others(patient_params[:search])
         end 
     end 
 
@@ -102,11 +89,11 @@ class PatientsController < ApplicationController
 
     def update 
           @patient = Patient.find(params[:id])
-          
-          if @patient.update(create_params)
+          @patient.update!(create_params)
+          if @patient.valid?
             redirect_to patient_path(@patient) , success: "Details are updated!"
           else 
-            render "edit"
+            render "edit", danger: "Error!"
           end 
     end 
     

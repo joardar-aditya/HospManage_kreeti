@@ -1,4 +1,8 @@
 <div class="container">
+   <% flash.each do |name, msg| %>
+      <div class="container alert-<%= name %>"><%= msg %></div>
+    <% end %>
+   
    
    <div class= "row">
    <div class="col-2 my-2">
@@ -41,7 +45,7 @@
   </div>
   <div class="row my-2">
        <div class="col"><b>Bed No.:</b></div>
-       <div class="col"><%= @patient.bedno.to_s%></div>
+       <div class="col"><%= @patient.bed_no.to_s%></div>
 
   </div>
   <div class="row my-2">
@@ -49,15 +53,18 @@
        <div class="col"><%= @patient.phone.to_s%></div>
 
   </div>
-  <% if @patient.admittedEmerg %>
+  <% if @patient.admit_emergency %>
   <div class="my-3 px-3 bg-danger text-light">
       Emergency
   </div>
+  <% end %>  
+  <%= form_for :patient , url:"/patients/#{@patient.id}/change_status" , method: :post do |f|  %>
+     <div class="row my-2">
+     <div class="col"> <%= f.select :status, options_for_select(["Admitted", "Emergency", 'Released']), include_blank: false %></div>
+     <div class="col"> <%= f.submit "Update Status", class: "btn btn-primary", disable_with: 'Update Status' %> </div>
+     </div>
   <% end %>
-    <%= form_for :patient , url:"/patients/#{@patient.id}/change_status" , method: :post do |f|  %>
-        <div> <%= f.select :status, options_for_select(["Admitted", "Emergency", 'Released']), include_blank: false %></div>
-         <%= f.submit "Update Status", disable_with: 'Update Status' %>
-    <% end %>
+  
 
 
 
@@ -66,23 +73,27 @@
 
     
 
-    <div class="my-2">
+<div class="my-2">
+     <h2 class="my-2">Appointments Available</h2>
+     
+     <table class="table">
+     <thead>
+       <tr>
+        <th> Appointment Date </th>
+        <th> Appointment Time</th>
+      </tr>
+     </thead>
+     
+     
+     <tbody>
+     <% @appointments.each do |app| %>
+          <tr class="container border my-2 mx-2"> 
+            <td><%= app.date.to_s %></td>
+            <td><%= app.time.to_s %></td>
+          </tr>
+     <% end %>
+     </tbody> 
+     </table>
 
-       <h2>  Your Appointments  </h2>
-        <% @appointments.each do |app| %>
-
-           <div class="container border my-2 mx-2"> 
-            
-            <h2><%= app.Date.to_s %></h2>
-            <div><%= app.Time.to_s %></div>
-
-        </div>
-
-
-        <% end %>
-    
-
-    </div> 
-
-
+</div>
 </div>

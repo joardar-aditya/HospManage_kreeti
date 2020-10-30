@@ -1,10 +1,8 @@
 ActiveAdmin.register Staff do
 
-  
   permit_params :email, :password, :password_confirmation, :name, :reset, :designation, :access, :f_pass, :doctor, :admin
   
   controller do 
-
     def update 
            puts params[:staff][:email]
          staff = Staff.find_by_email(params[:staff][:email])
@@ -17,16 +15,16 @@ ActiveAdmin.register Staff do
             render :edit
          end
     end 
+    
     private 
-
     def allow_params
        if params[:staff][:password].nil?
         params.require(:staff).permit(:email, :name, :reset, :designation, :access,  :doctor, :admin)
        else
         params.require(:staff).permit(:email, :name, :reset, :designation, :access, :password, :password_confirmation, :doctor, :admin)
-       end 
+      end 
     end
-end
+  end
 
 
 
@@ -54,5 +52,4 @@ end
     end 
     f.actions 
   end 
-  
 end

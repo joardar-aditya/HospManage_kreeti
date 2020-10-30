@@ -7,10 +7,10 @@ class AppointmentsController < ApplicationController
     def create 
         @patient = Patient.find(params[:patient_id])
         @appointment = @patient.appointments.create(add_app)
-        if @appointment.save!
-            redirect_to "/patients", success: "Appointment Added"
-        else 
+        if @appointment.errors.any?
             render "new", danger: "Appointment not created"
+        else 
+            redirect_to "/patients/#{@patient.id}", success: "Appointment Added"
         end 
     end 
     

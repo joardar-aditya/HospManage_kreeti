@@ -29,7 +29,7 @@
   </div>
   <div class="row my-2">
        <div class="col"><b>Bed No.:</b></div>
-       <div class="col"><%= @patient.bedno.to_s%></div>
+       <div class="col"><%= @patient.bed_no.to_s%></div>
 
   </div>
   <div class="row my-2">
@@ -37,7 +37,7 @@
        <div class="col"><%= @patient.phone.to_s%></div>
 
   </div>
-  <% if @patient.admittedEmerg %>
+  <% if @patient.admit_emergency %>
   <div class="my-3 px-3 bg-danger text-light">
       Emergency
   </div>
@@ -47,4 +47,4 @@
    <div class="col"><h3>Total Amount: </h3> </div>
    <div class="col"><%= @total %> </div>
  
-  </div>
+</div>

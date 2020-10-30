@@ -1,11 +1,19 @@
 <div class="container">
    <h1> Add a new Appointment </h1>
+   <% if @appointment.errors.any? %>
+      <div>Following errors occured</div>
+      <ul>
+      <% @appointment.errors.full_messages.each do |message|%>
+        <li><b class="text-danger"><%= message %> </b></li>
+      <%end%>
+      </ul>
+   <%end%>
 
    <%= form_for :appointment , url: patient_appointments_path(@patient.id), method: :post do |f|  %>
-        <div> <%= f.date_field :Date , class: 'container rounded my-2' %></div>
-        <div> <%= f.text_field :Time , class: 'container rounded my-2' %></div>
+        <div> <%= f.date_field :date , class: 'container rounded my-2' %></div>
+        <div> <%= f.text_field :time , placeholder: "HH:MM", class: 'container rounded my-2' %></div>
 
-         <%= f.submit "Add an Appointment", disable_with: 'Adding ....' %>
+         <%= f.submit "Add an Appointment", class: "btn btn-primary",  disable_with: 'Adding ....' %>
     <% end %>
 
 </div>

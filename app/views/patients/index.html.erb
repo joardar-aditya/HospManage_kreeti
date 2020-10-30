@@ -14,11 +14,8 @@
    </div>
    <div class="my-2">   
        <%= form_with(url: patients_path, method: "get", local: true) do %>
-               <%= label_tag(:q, "Search for:") %>
-                <%=  select_tag(:option, options_for_select(["Id", "name", "Date of Birth"]))  %>
-                <%= text_field_tag(:search) %>
-                <div> Appointment Date : <%= date_field_tag(:appointment) %> </div>
-                <%= submit_tag("Search") %>
+            <%= text_field_tag(:search) %>
+            <%= submit_tag("Search", class: "btn btn-primary") %>
         <% end %>
 
    </div>

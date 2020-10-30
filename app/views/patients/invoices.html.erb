@@ -8,7 +8,7 @@
       <div><%= f.label :id , "Patient Name:"%></div>
       <div><%= f.collection_select :id, @patients, :id, :name , include_blank: true %></div>
       
-      <div><%= f.label :total, "Total" %></div>
+      <div><%= f.label :total, "Total Payable Amount:" %></div>
       <div><%= f.number_field :total %></div>
       
       <div class="my-2"> <%= f.submit "Submit", disable_with: 'Submiting....' %>  </div>

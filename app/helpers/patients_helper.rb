@@ -1,46 +1,34 @@
 module PatientsHelper
-    def search(name, option, date)
-         @patients = Patient.all 
-         if date.to_s != "" 
-           @patients =  Patient.joins(:appointments).where(appointments: {Date: date})
+  def add_patient_staff(patient)
+    if current_admin_user == nil
+      if current_user.doctor
+        patient.staff_id = current_user.id
+      end
+    end
+    patient.save 
+  end
 
-         end 
-         if option == "Id" 
-              if name != nil
-                 Patient.search_refno(name)
-              end
-         elsif option == "name"
-            if name != nil 
-               Patient.search_name(name)
-            end  
-         else 
-            if name != nil 
-                  Patient.search_don(name)
-            end 
-         end 
-    end 
+  def index_patients_admin(search)
+    if search == nil 
+      @patients = Patient.all 
+    else
+      @patients = Patient.search_patient(search)
+    end  
+  end
 
-    def search_staff(name, option, id)
-        if option == "id"
-            @patients = Patient.where(id: name.to_i,staff_id: id )
-        elsif option == "name"
-            @patients = Patient.where("name LIKE ? AND staff_id = ?", "%#{name}%", id)
-        else 
-            @patients = Patient.where(email: name, staff_id: id)
-        end     
-    end 
-
-    def add_patient_reference(patient)
-         ref = "REF"
-         if patient.id < 10 
-             ref += "00" + patient.id.to_s 
-         elsif patient.id < 100 
-             ref += "0" + patient.id.to_s 
-         else 
-            ref += patient.id.to_s
-         end 
-         patient.update(ref_num: ref)
-         puts patient.ref_num
-         
-    end 
+  def index_patient_others(search)
+    if !current_user.doctor
+      if search == nil 
+       @patients = Patient.all
+      else 
+       @patients = Patient.search_patient(search)
+      end 
+     else 
+      if search == nil 
+       @patients = Patient.all.where(staff_id: current_user.id)
+      else 
+       @patients = Patient.search_id(search, current_user.id )
+      end
+     end 
+  end
 end

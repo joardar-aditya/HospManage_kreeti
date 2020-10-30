@@ -16,7 +16,7 @@
 <% end %>
     
     <h1 class= "my-2">Edit Patient Details </h1>
-    <%= form_for @patient, :method => :PUT do |f| %>
+    <%= form_for @patient, method: "put" do |f| %>
        <div class="form-group">
        <%= f.label :name, "Name*" %>
        <%= f.text_field :name, class: "form-control", required: true %>
@@ -46,7 +46,7 @@
        </div>
        <div class="form-group">
        <%= f.label :dob, "Your Date of Birth*"%>
-       <%= f.date_field :dob , class: "form-control", required: true%>
+       <%= f.date_field :dob , value: @patient.dob, class: "form-control", required: true%>
        </div>
        <div class="form-group">
        <%= f.label :address, "Address*" %>
@@ -70,7 +70,7 @@
        <%= f.label :status, "Status*"%>
        <%= f.select :status, options_for_select(["Admitted", "Emergency", 'Released']), include_blank: false %>
        </div>
-       <%= f.submit disable_with: "Submitting...." %>
+       <%= f.submit disable_with: "Submitting....", class:"btn btn-primary my-2" %>
 
 
 

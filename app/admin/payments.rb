@@ -1,7 +1,3 @@
 ActiveAdmin.register Payment do
-
-  
-  permit_params :paymenttype
-  
-  
+  permit_params :payment_type
 end
