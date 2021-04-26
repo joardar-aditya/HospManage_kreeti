@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Patient, type: :model do
+RSpec.describe Staff, type: :model do
 
-  let(:patient) { create(:patient) }
+  let(:staff) { create(:staff) }
 
   context "validations" do
     it { should validate_presence_of(:name) }

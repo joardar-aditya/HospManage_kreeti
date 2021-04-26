@@ -1,8 +1,8 @@
  class Patient < ApplicationRecord
-     include ActiveModel::Validations 
+     include ActiveModel::Validations
      has_one_attached :voter_id
      validates :name, presence: true
-     validates :email, format: { with: /\A[^@\s]+@[^@\s]+\z/ }, presence: true, uniqueness: true, if: :can_validate?
+     validates :email, format: { with: /\A[^@\s]+@[^@\s]+\z/ }, presence: true, uniqueness: true
      validates :age, presence: true 
      validates :disease, presence: true
      belongs_to :bed, optional: true
@@ -14,17 +14,8 @@
      scope :search_patient, -> (name) { where("name LIKE :name OR ref_num LIKE :name OR dob LIKE :name", name: "%#{name}%")}
      scope :search_id, -> (name, id) { where("name LIKE :name OR ref_num LIKE :name OR dob LIKE :name AND staff_id = :id", name: "%#{name}%", id: "%#{id}%") }
 
-
-    def can_validate?
-      true
-    end
-
     def admit_emergency
-      if self.status == "Emergency"
-        true
-      else 
-        false
-      end
+      self.status == "Emergency"
     end
 
     after_create do
@@ -41,5 +32,5 @@
         self.save
       end
       PatientMailer.with(user: self).new_registration.deliver_now
-    end  
+    end
 end
